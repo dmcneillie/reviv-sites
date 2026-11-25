@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The Sandbox — WhiskWhere</title>
+<title>WhiskWhere — The Sandbox</title>
 <meta name="description" content="A little test playground on whiskwhere.com. Nothing here is permanent — this is where we play.">
 <meta name="robots" content="noindex">
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -53,6 +53,20 @@
   .social a:hover { opacity: 1; }
   .social svg.soc { height: 21px; width: 21px; }
   .legal { margin: 2px 0 10px; }
+  .voice-change h2 { font-size: 1.45rem; font-weight: 700; margin-bottom: 0.4rem; }
+  .voice-change .stamp { font-size: 0.9rem; color: #C86B52; font-weight: 600; margin-bottom: 0; }
+  .divider { border: none; border-top: 1px solid #E8E3DA; margin: 1.75rem auto; width: 60%; }
+  .count-num { font-size: 3rem; font-weight: 700; color: #C86B52; line-height: 1; margin-bottom: 0.25rem; }
+  .countdown p { margin-bottom: 0; }
+  .meal-strip h3, .poll h3 { font-size: 1.1rem; margin-bottom: 0.9rem; }
+  .meals { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .meal { background: #F9F6F0; border: 1px solid #E8E3DA; border-radius: 12px; padding: 0.9rem 1rem; width: 168px; text-align: left; }
+  .meal .when { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: #8BA888; margin-bottom: 0.3rem; }
+  .meal .what { font-size: 0.95rem; color: #2C332A; line-height: 1.45; margin-bottom: 0; }
+  .poll-buttons { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .poll-buttons button { font: inherit; font-weight: 600; color: #A55540; background: #FFFFFF; border: 2px solid #C86B52; border-radius: 999px; padding: 0.5rem 1.2rem; cursor: pointer; }
+  .poll-buttons button:hover { background: #C86B52; color: #FFFFFF; }
+  .poll-result { margin-top: 0.9rem; font-weight: 600; color: #2C332A; margin-bottom: 0; min-height: 1.4em; }
 </style>
 </head>
 <body>
@@ -61,13 +75,57 @@
 
 <h1>Welcome to the <span class="accent">Sandbox</span></h1>
 
-<p><strong>Hey — we're just goofing around in here.</strong></p>
+<p><strong>This is our test kitchen — nothing here is plated yet. We're trying things out before they go on the menu.</strong></p>
 <p>This is a test playground. Things show up, things get tried out, things disappear. Nothing on this page is permanent, and nothing here counts — it's just a place to play.</p>
 <p>If you landed here by accident, no harm done. The real kitchen is right this way.</p>
 
 <div class="play-area" id="play-area">
-  <p>🧑‍🍳 The sandbox is empty right now. Check back during a demo — something fun might appear.</p>
+  <div class="voice-change">
+    <h2>This page just changed because I talked to it.</h2>
+    <p class="stamp">Last changed by voice — Wednesday, November 25, 2026, at 4:47 AM</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="countdown">
+    <p class="count-num"><span id="cd-days">&ndash;</span></p>
+    <p>days until December &mdash; when WhiskWhere launches on iPhone</p>
+  </div>
+
+  <hr class="divider">
+
+  <div class="meal-strip">
+    <h3>Today, from Sage</h3>
+    <div class="meals">
+      <div class="meal"><p class="when">Breakfast</p><p class="what">Veggie omelet &mdash; use up the spinach first</p></div>
+      <div class="meal"><p class="when">Lunch</p><p class="what">Leftover tomato soup with grilled cheese</p></div>
+      <div class="meal"><p class="when">Dinner</p><p class="what">Sheet-pan chicken &mdash; the carrots go first</p></div>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="poll">
+    <h3>What should Sage cook tonight?</h3>
+    <div class="poll-buttons">
+      <button type="button" onclick="vote('Tacos')">Tacos</button>
+      <button type="button" onclick="vote('Pasta')">Pasta</button>
+      <button type="button" onclick="vote('Soup')">Soup</button>
+    </div>
+    <p class="poll-result" id="poll-result"></p>
+  </div>
 </div>
+
+<script>
+  (function () {
+    var target = new Date('2026-12-01T00:00:00-05:00').getTime();
+    var days = Math.max(0, Math.ceil((target - Date.now()) / 86400000));
+    document.getElementById('cd-days').textContent = days;
+  })();
+  function vote(choice) {
+    document.getElementById('poll-result').textContent = 'Good call \u2014 ' + choice.toLowerCase() + ' it is. Sage will plan around what you already have.';
+  }
+</script>
 
 <a class="home" href="/">← Back to whiskwhere.com</a>
 
