@@ -2,3 +2,5 @@ User-agent: *
 Allow: /
 
 Sitemap: https://whiskwhere.com/sitemap.xml
+
+# Relay test - pushed Nov 24, 2026, 9:41 PM ET. If this line is live, the 5-minute pull works.
